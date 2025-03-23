@@ -31,7 +31,12 @@ public class MainMediator {
 
         System.out.println(">> Consultando situacao da pista....");
         mainRunway.land();
+        System.out.println();
+
         f1.land();
+
+        System.out.println();
+        System.out.println(">> Consultando situacao da pista....");
         mainRunway.land();
         f2.land();
     }
