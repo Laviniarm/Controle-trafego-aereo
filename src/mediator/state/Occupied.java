@@ -7,4 +7,8 @@ public class Occupied implements RunwayState{
     public void land(Runway runway) {
         System.out.println("Runway is busy. Wait for permission.");
     }
+
+    public void takeoff(Runway runway) {
+        System.out.println("Runway is busy. Wait for permission.");
+    }
 }

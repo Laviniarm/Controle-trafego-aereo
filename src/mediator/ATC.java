@@ -55,7 +55,7 @@ public class ATC implements ATCMediator {
 		}
 	}
 
-	public void requestLanding(Flight flight) {
+	public void requestLandingOrTakeoff(Flight flight) {
 		flightQueue.add(flight);
 	}
 

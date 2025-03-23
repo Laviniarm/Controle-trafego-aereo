@@ -13,14 +13,17 @@ public class MainMediator {
 
         // Componente 2
         Runway mainRunway = new Runway(atcMediator);
+        Runway secondRunway = new Runway(atcMediator);
 
         atcMediator.registerFlight(f1);
         atcMediator.registerFlight(f2);
         atcMediator.registerFlight(f3);
         atcMediator.registerRunway(mainRunway);
+        atcMediator.registerRunway(secondRunway);
 
+        // Pouso e decolagem dos aviões
         System.out.println(">> Contato da aeronave 1....");
-        f1.getReady();
+        f1.getReadyForLanding();
         System.out.println();
 
         System.out.println(">> Consultando situacao da pista....");
@@ -28,22 +31,17 @@ public class MainMediator {
         System.out.println();
 
         System.out.println(">> Contato da aeronave 2....");
-        f2.getReady();
+        f2.getReadyForTakeoff();
         System.out.println();
 
         System.out.println(">> Consultando situacao da pista....");
-        mainRunway.land();
-        System.out.println();
+        mainRunway.takeoff();
 
-        f2.land();
-        System.out.println();
         f1.land();
 
         System.out.println();
         System.out.println(">> Consultando situacao da pista....");
         mainRunway.land();
-
-        System.out.println();
-        f2.land();
+        f2.takeoff();
     }
 }

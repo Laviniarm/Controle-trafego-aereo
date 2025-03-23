@@ -27,9 +27,25 @@ public class Flight implements Command {
         }
     }
 
-    public void getReady() {
+    public void takeoff() {
+        if (atcMediator.isCurrentFlight(this)) {
+            atcMediator.occupyRunway();
+            System.out.println("Flight " + flightNumber + " Successfully Took off.");
+            atcMediator.setLandingStatus(false);
+        } else {
+            System.out.println("Flight " + flightNumber + " cannot take off. Not in order.");
+        }
+    }
+
+
+    public void getReadyForLanding() {
         System.out.println("Flight " + flightNumber + " from " + airline + " requesting landing authorization...");
-        atcMediator.requestLanding(this);
+        atcMediator.requestLandingOrTakeoff(this);
+    }
+
+    public void getReadyForTakeoff() {
+        System.out.println("Flight " + flightNumber + " from " + airline + " requesting takeoff authorization...");
+        atcMediator.requestLandingOrTakeoff(this);
     }
 
     public String getFlight() {

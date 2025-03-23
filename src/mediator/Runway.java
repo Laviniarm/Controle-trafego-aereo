@@ -19,6 +19,10 @@ public class Runway implements Command {
         currentState.land(this);
     }
 
+    public void takeoff() {
+        currentState.takeoff(this);
+    }
+
     public void setState(RunwayState state) {
         this.currentState = state;
     }

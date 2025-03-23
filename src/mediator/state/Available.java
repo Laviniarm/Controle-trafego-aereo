@@ -9,4 +9,10 @@ public class Available implements RunwayState {
         System.out.println("Landing permission granted.");
         runway.setState(new Occupied());
     }
+
+    @Override
+    public void takeoff(Runway runway) {
+        System.out.println("Landing permission granted.");
+        runway.setState(new Occupied());
+    }
 }

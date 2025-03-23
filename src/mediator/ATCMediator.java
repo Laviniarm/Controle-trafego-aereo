@@ -8,7 +8,7 @@ public interface ATCMediator {
 
     void setLandingStatus(boolean status);
 
-    void requestLanding(Flight flight);
+    void requestLandingOrTakeoff(Flight flight);
 
     boolean isCurrentFlight(Flight flight);
 
