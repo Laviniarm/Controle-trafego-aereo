@@ -6,9 +6,9 @@ package mediator;
  * @author alexs
  */
 public class Flight implements Command {
-    private ATCMediator atcMediator = null;
-    private String flightNumber = null;
-    private String airline = null;
+    private ATCMediator atcMediator;
+    private String flightNumber;
+    private String airline;
 
     public Flight(ATCMediator atcMediator, String airline, String flight) {
         this.atcMediator = atcMediator;
@@ -18,16 +18,18 @@ public class Flight implements Command {
 
     @Override
     public void land() {
-        if (atcMediator.isLandingOk()) {
+        if (atcMediator.isCurrentFlight(this)) {
+            atcMediator.occupyRunway();
             System.out.println("Flight " + flightNumber + " Successfully Landed.");
-            atcMediator.setLandingStatus(true);
+            atcMediator.setLandingStatus(false);
         } else {
-            System.out.println("Waiting for landing.");
+            System.out.println("Flight " + flightNumber + " cannot land. Not in order.");
         }
     }
 
     public void getReady() {
-        System.out.println("Flight " + this.flightNumber + " from " + this.airline + " requesting landing authorization...");
+        System.out.println("Flight " + flightNumber + " from " + airline + " requesting landing authorization...");
+        atcMediator.requestLanding(this);
     }
 
     public String getFlight() {

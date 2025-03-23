@@ -1,17 +1,12 @@
 package mediator;
 
-
 import mediator.state.Available;
 import mediator.state.RunwayState;
 import mediator.state.Unsafe;
+import mediator.state.Occupied;
 
-/**
- * Componente 2: Runway (representa a pista de pouso)
- *
- * @author alexs
- */
 public class Runway implements Command {
-    private ATCMediator atcMediator = null;
+    private ATCMediator atcMediator;
     private RunwayState currentState;
     private SupportTeam supportTeam;
 
@@ -30,6 +25,10 @@ public class Runway implements Command {
         this.currentState = state;
     }
 
+    public boolean isAvailable() {
+        return currentState instanceof Available;
+    }
+
     public SupportTeam getSupportTeam() {
         return this.supportTeam;
     }
@@ -40,5 +39,9 @@ public class Runway implements Command {
 
     public void makeRunwayAvailable() {
         this.setState(new Available());
+    }
+
+    public void occupyRunway() {
+        this.setState(new Occupied());
     }
 }

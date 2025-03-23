@@ -33,6 +33,7 @@ public class MainMediator {
         mainRunway.land();
         System.out.println();
 
+        f2.land();
         f1.land();
 
         System.out.println();
