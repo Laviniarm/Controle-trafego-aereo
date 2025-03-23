@@ -1,14 +1,24 @@
 package mediator;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class ATC implements ATCMediator {
+	private static ATC instance;
 	private List<Flight> flightQueue = new ArrayList<>();
 	private Runway runway;
 	SupportTeam supportTeam;
+
+	private ATC() {
+		this.supportTeam = new SupportTeam();
+	}
+
+	public static ATC getInstance() {
+		if (instance == null) {
+			instance = new ATC();
+		}
+		return instance;
+	}
 
 	@Override
 	public void registerRunway(Runway runway) {
@@ -19,10 +29,6 @@ public class ATC implements ATCMediator {
 	public void registerFlight(Flight flight) {
 		flightQueue.add(flight);
 	}
-	@Override
-	public void registerSupportTeam(SupportTeam supportTeam) {
-		this.supportTeam = supportTeam;
-	}
 
 	@Override
 	public boolean isLandingOk() {
@@ -30,15 +36,12 @@ public class ATC implements ATCMediator {
 	}
 
 	@Override
-	public void landed() {
-		runway.makeRunwayUnsafe();
-		supportTeam.prepareRunway();
-		this.setLandingStatus(true);
-	}
-
-	@Override
 	public void setLandingStatus(boolean status) {
 		if (!status) {
+			runway.makeRunwayUnsafe();
+			System.out.println("Runway is unsafe. Please wait for the safety check.");
+			supportTeam.prepareRunway();
+			System.out.println("Runway is safe!");
 			runway.makeRunwayAvailable();
 		}
 		if (!flightQueue.isEmpty()) {

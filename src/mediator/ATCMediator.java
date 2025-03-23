@@ -3,10 +3,8 @@ package mediator;
 public interface ATCMediator {
     void registerRunway(Runway runway);
     void registerFlight(Flight flight);
-    void registerSupportTeam(SupportTeam supportTeam);
-    boolean isLandingOk();
 
-    void landed();
+    boolean isLandingOk();
 
     void setLandingStatus(boolean status);
 

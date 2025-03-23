@@ -8,12 +8,10 @@ import mediator.state.Occupied;
 public class Runway implements Command {
     private ATCMediator atcMediator;
     private RunwayState currentState;
-    private SupportTeam supportTeam;
 
     public Runway(ATCMediator atcMediator) {
         this.atcMediator = atcMediator;
         this.currentState = new Available();
-        this.supportTeam = new SupportTeam();
     }
 
     @Override
@@ -27,10 +25,6 @@ public class Runway implements Command {
 
     public boolean isAvailable() {
         return currentState instanceof Available;
-    }
-
-    public SupportTeam getSupportTeam() {
-        return this.supportTeam;
     }
 
     public void makeRunwayUnsafe() {
